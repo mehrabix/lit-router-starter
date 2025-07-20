@@ -4,8 +4,6 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Detect if we're in development mode (when running rspack serve)
-const isDevelopment = process.argv.includes('serve') || process.env.NODE_ENV === 'development';
 const isProduction = process.argv.includes('build') || process.env.NODE_ENV === 'production';
 
 /** @type {import('@rspack/cli').Configuration} */
