@@ -1,10 +1,9 @@
 import { LitElement, html, css } from 'lit';
-import { customElement, state } from 'lit/decorators.js';
+import { customElement, property } from 'lit/decorators.js';
 
 @customElement('app-header')
 export class AppHeader extends LitElement {
-  @state()
-  private isMenuOpen = false;
+  isMenuOpen = false;
 
   static styles = css`
     header {
@@ -150,13 +149,6 @@ export class AppHeader extends LitElement {
     }
   `;
 
-  private handleNavigation(path: string, event: Event) {
-    event.preventDefault();
-    window.history.pushState({}, '', path);
-    window.dispatchEvent(new PopStateEvent('popstate'));
-    this.isMenuOpen = false;
-  }
-
   private toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
@@ -165,24 +157,24 @@ export class AppHeader extends LitElement {
     return html`
       <header>
         <nav>
-          <a href="/" class="logo" @click=${(e: Event) => this.handleNavigation('/', e)}>
+          <a href="/" class="logo" >
             <div class="logo-icon">A</div>
             <span>My SPA App</span>
           </a>
           
           <ul class="nav-links">
             <li>
-              <a href="/" @click=${(e: Event) => this.handleNavigation('/', e)}>
+              <a href="/" >
                 Home
               </a>
             </li>
             <li>
-              <a href="/about" @click=${(e: Event) => this.handleNavigation('/about', e)}>
+              <a href="/about">
                 About
               </a>
             </li>
             <li>
-              <a href="/contact" @click=${(e: Event) => this.handleNavigation('/contact', e)}>
+              <a href="/contact">
                 Contact
               </a>
             </li>
@@ -190,22 +182,22 @@ export class AppHeader extends LitElement {
 
           <button class="mobile-menu-button" @click=${this.toggleMenu}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              ${this.isMenuOpen 
-                ? html`<path d="M18 6L6 18M6 6l12 12"/>`
-                : html`<path d="M3 12h18M3 6h18M3 18h18"/>`
-              }
+              ${this.isMenuOpen
+        ? html`<path d="M18 6L6 18M6 6l12 12"/>`
+        : html`<path d="M3 12h18M3 6h18M3 18h18"/>`
+      }
             </svg>
           </button>
         </nav>
 
         <div class="mobile-menu ${this.isMenuOpen ? 'open' : ''}">
-          <a href="/" @click=${(e: Event) => this.handleNavigation('/', e)}>
+          <a href="/" >
             Home
           </a>
-          <a href="/about" @click=${(e: Event) => this.handleNavigation('/about', e)}>
+          <a href="/about" >
             About
           </a>
-          <a href="/contact" @click=${(e: Event) => this.handleNavigation('/contact', e)}>
+          <a href="/contact">
             Contact
           </a>
         </div>
