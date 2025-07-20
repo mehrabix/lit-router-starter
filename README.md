@@ -124,7 +124,7 @@ The application follows a component-based architecture using Lit web components:
    ```bash
    pnpm dev
    ```
-   This will start the development server at `http://localhost:8080`
+   This will start the development server at `http://localhost:3200`
 
 2. **Make Changes:**
    - Edit TypeScript files in the `src/` directory
