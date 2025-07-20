@@ -1,9 +1,10 @@
-import { LitElement, html, css } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { signal, SignalWatcher } from '@lit-labs/signals';
+import { LitElement, css, html } from 'lit';
+import { customElement } from 'lit/decorators.js';
 
 @customElement('app-header')
-export class AppHeader extends LitElement {
-  isMenuOpen = false;
+export class AppHeader extends SignalWatcher(LitElement) {
+  isMenuOpen = signal(false);
 
   static styles = css`
     header {
@@ -150,7 +151,7 @@ export class AppHeader extends LitElement {
   `;
 
   private toggleMenu() {
-    this.isMenuOpen = !this.isMenuOpen;
+    this.isMenuOpen.set(!this.isMenuOpen.get());
   }
 
   render() {
@@ -190,7 +191,7 @@ export class AppHeader extends LitElement {
           </button>
         </nav>
 
-        <div class="mobile-menu ${this.isMenuOpen ? 'open' : ''}">
+        <div class="mobile-menu ${this.isMenuOpen.get() ? 'open' : ''}">
           <a href="/" >
             Home
           </a>
