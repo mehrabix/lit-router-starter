@@ -1,33 +1,29 @@
 {
   "name": "ui",
   "version": "1.0.0",
-  "description": "SPA frontend using Rspack, Lit, Lit Router, and TypeScript",
-  "main": "index.js",
+  "description": "A modern SPA built with Lit, Rspack, TypeScript, and pnpm",
   "type": "module",
   "scripts": {
     "dev": "rspack serve",
-    "build": "rspack build",
-    "preview": "rspack preview",
-    "type-check": "tsc --noEmit"
+    "build": "rspack build && node scripts/post-build.js",
+    "preview": "cd dist && python -m http.server 3000"
   },
   "keywords": [
-    "spa",
     "lit",
     "rspack",
-    "typescript"
+    "typescript",
+    "spa",
+    "web-components"
   ],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@10.12.4",
+  "author": "Your Name",
+  "license": "MIT",
   "devDependencies": {
     "@rspack/cli": "^1.4.8",
     "@rspack/core": "^1.4.8",
-    "@rspack/plugin-html": "^0.5.8",
-    "@types/node": "^20.0.0",
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "@lit-labs/router": "^0.1.4",
-    "lit": "^3.3.1"
+    "@lit-labs/router": "^0.1.1",
+    "lit": "^3.0.0"
   }
 }
